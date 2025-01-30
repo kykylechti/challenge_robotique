@@ -2,7 +2,7 @@ import math, random
 import numpy as np
 import matplotlib.pyplot as plt
 
-cylindres =  np.loadtxt("donnees-map.txt")
+cylindres =  np.loadtxt("map/donnees-map-1.txt")
 fileOut = open("out.txt", "w")
 
 # Variables globales
@@ -62,6 +62,8 @@ def graphePossibilites(cylindres, taille):
                 res[i][j]=bool 
     return res
 
+pos0=[0,0]
+orientation0 = 0
 def CylindreToText(pos0,orientation0,cylindreOrdre):
     global cylindres
     pos=pos0
@@ -137,34 +139,6 @@ def tracer_chemin(coords, chemin):
     plt.grid(True)
     plt.show()
 
-pos0=[0,0]
-orientation0 = 0
-def CylindreToText(pos0,orientation0,cylindreOrdre):
-    global cylindres
-    pos=pos0
-    orientation=orientation0
-    for i in cylindreOrdre:
-        Vecteur = [cylindres[i][0]-pos[0],cylindres[i][1]-pos[1]]
-        Distance = np.sqrt(Vecteur[0]**2+Vecteur[1]**2)
-        Vecteur = Vecteur / Distance
-        a=np.arcsin(Vecteur[1])
-        b=np.arccos(Vecteur[0])
-        if Vecteur[1]<0:
-            NouvelleOrientation = -b
-        else:
-            NouvelleOrientation = b
-        NouvelleOrientation = NouvelleOrientation*180/np.pi
-        OP = NouvelleOrientation-orientation
-        if OP>180:
-            OP=OP-360
-        elif OP<-180:
-            OP=OP+360
-        ecrireTourner(OP)
-        ecrireAvancer(Distance)
-        orientation=NouvelleOrientation
-        pos=[cylindres[i][0],cylindres[i][1]]
-    ecrireFinish()
-    return None
 
 def conversionTypeCylindre(typeC): 
     if(typeC==1.0):
@@ -267,5 +241,4 @@ CylindreToText(pos0, orientation0, chemin)
 print(chemin)
 print(cout)
 print(score)
-np.savetxt("intensite.txt", pheromones, fmt='%f')
 fileOut.close()
