@@ -3,7 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 cylindres =  np.loadtxt("map/donnees-map-1.txt")
-fileOut = open("out.txt", "w")
+fileOut = open("scripts/script-1.txt", "w")
 
 # Variables globales
 b = 3
