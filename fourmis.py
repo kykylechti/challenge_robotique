@@ -2,8 +2,8 @@ import math, random
 import numpy as np
 import matplotlib.pyplot as plt
 
-cylindres =  np.loadtxt("maps/donnees-map-1.txt")
-fileOut = open("scripts/script-1.txt", "w")
+cylindres =  np.loadtxt("maps/donnees-map-10.txt")
+fileOut = open("scripts/script-10.txt", "w")
 
 # Variables globales
 b = 3
@@ -234,9 +234,9 @@ def fourmis(iterations):
 coords = cylindres[:, :2]
 chemin, cout, score = fourmis(200)
 
-tracer_chemin(coords, chemin)
+#tracer_chemin(coords, chemin)
 
-CylindreToText(pos0, orientation0, chemin)
+CylindreToText(pos0, orientation0, np.delete(chemin, 0))
 
 print(chemin)
 print(cout)
