@@ -2,7 +2,7 @@ import math, random
 import numpy as np
 import matplotlib.pyplot as plt
 
-cylindres =  np.loadtxt("map/donnees-map-1.txt")
+cylindres =  np.loadtxt("maps/donnees-map-1.txt")
 fileOut = open("scripts/script-1.txt", "w")
 
 # Variables globales
@@ -22,14 +22,14 @@ gamma = 0.05
 alpha = 1
 beta = 2.0
 rho = 0.5
-nb_fourmis = 50
+nb_fourmis = 10
 Q = 0.3
 
 # Ecriture dans le fichier de sortie
 def ecrireAvancer(distance):
-    fileOut.write("GO %d\r\n" % (distance))
+    fileOut.write("GO %f\r" % (distance))
 def ecrireTourner(angle):
-    fileOut.write("TURN %d\r\n" % (angle))
+    fileOut.write("TURN %f\r" % (angle))
 def ecrireFinish():
     fileOut.write("FINISH\r\n")
 
