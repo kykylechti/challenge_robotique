@@ -2,8 +2,8 @@ import math, random
 import numpy as np
 import matplotlib.pyplot as plt
 
-cylindres =  np.loadtxt("maps/donnees-map-10.txt")
-fileOut = open("scripts/script-10.txt", "w")
+cylindres =  np.loadtxt("maps/donnees-map-1.txt")
+fileOut = open("scripts/script-1.txt", "w")
 
 # Variables globales
 b = 3
@@ -22,7 +22,7 @@ gamma = 0.05
 alpha = 1
 beta = 2.0
 rho = 0.5
-nb_fourmis = 10
+nb_fourmis = 20
 Q = 0.3
 
 # Ecriture dans le fichier de sortie
@@ -153,11 +153,9 @@ cylindres = np.concatenate((cylindres, [[0.0, 0.0, 0.0]]), axis=0)
 graphePossible = graphePossibilites(cylindres, taille+1)
 graphePossibleInit = graphePossible.T + graphePossible
 
-iteration = 1000
-
 sum_value = 0
 pb = 0
-nb_cylindres = 21
+nb_cylindres = taille +1 
 
 pheromones = np.ones((taille+1, taille+1), dtype=float)
 
@@ -178,7 +176,7 @@ def nextChoice(point, vuuuuu, pheromones, couts, mu):
     return np.random.choice(range(nb_options), p=proba)
 
 def fourmis(iterations):
-    global pheromones, alpha, bete, rho, nb_fourmis, cylindes
+    global pheromones, alpha, beta, rho, nb_fourmis, cylindres, taille
     meilleur_chemin = None
     meilleur_cout = float('inf')
     meilleur_score = None
@@ -186,7 +184,7 @@ def fourmis(iterations):
     couts = coutCarb(mu, cylindres)
     nb_cylindres = len(couts)
 
-    for _ in range(iteration):
+    for _ in range(iterations):
         chemins = []
         coutCarb_totals = []
         coutTemps_totals = []
@@ -195,7 +193,7 @@ def fourmis(iterations):
         for _ in range(nb_fourmis):
             mu = 0 
             value = 0
-            act = 20
+            act = taille 
             vuuus = [act]
             coutCarbTotal = 0 
             coutTempsTotal = 0 
